@@ -2,7 +2,9 @@
 #define CURSO_H
 #include <string>
 #include <iostream>
+#include "Alumno.h"
 using namespace std;
+
 class Curso {
 private:
     string codigoUnico;
@@ -10,15 +12,28 @@ private:
     int cantMax;
     string carrera;
     string nProfesor;
-public:
-Curso(string _codigoUnico, string _nombre, int _cantMax, string _carrera, string _nProfesor);
-string getCodigoUnico();
-string getNombre();
-int getCantMax();
-string getCarrera();
-string getNProfesor();
 
-void mostrarInfo();
+    struct NodoAlumno {
+        Alumno* alumno;
+        NodoAlumno* siguiente;
+        NodoAlumno(Alumno* a) : alumno(a), siguiente(nullptr) {}
+    };
+
+    NodoAlumno* headInscritos; 
+    int inscritos;
+
+public:
+    Curso(string _codigoUnico, string _nombre, int _cantMax, string _carrera, string _nProfesor);
+
+    string getCodigoUnico();
+    string getNombre();
+    int getCantMax();
+    string getCarrera();
+    string getNProfesor();
+    void mostrarInfo();
+    bool inscribirAlumno(Alumno* a);
+    bool eliminarAlumno(int id);
+    void mostrarInscritos();
 };
 
 #endif

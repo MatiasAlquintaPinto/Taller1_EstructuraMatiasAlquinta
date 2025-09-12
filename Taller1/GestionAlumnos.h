@@ -22,6 +22,7 @@ public:
     void eliminar(int id);
     Alumno* buscar(int id);
     void mostrarTodos();
+    void buscarPorNombre(string nombre);
 };
 
 #endif

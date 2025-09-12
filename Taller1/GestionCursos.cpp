@@ -1,16 +1,16 @@
-#include "GestionAlumnos.h"
+#include "GestionCursos.h"
 
-GestionAlumnos::GestionAlumnos() {
+GestionCursos::GestionCursos() {
     head = nullptr;
 }
 
-void GestionAlumnos::insertar(Alumno* a) {
-    Nodo* nuevo = new Nodo(a);
+void GestionCursos::insertar(Curso* c) {
+    Nodo* nuevo = new Nodo(c);
     nuevo->siguiente = head;
     head = nuevo;
 }
 
-void GestionAlumnos::mostrarTodos() {
+void GestionCursos::mostrarTodos() {
     Nodo* current = head;
     while (current != nullptr) {
         current->dato->mostrarInfo();
@@ -19,21 +19,21 @@ void GestionAlumnos::mostrarTodos() {
     }
 }
 
-Alumno* GestionAlumnos::buscar(int id) {
+Curso* GestionCursos::buscar(string codigo) {
     Nodo* current = head;
     while (current != nullptr) {
-        if (current->dato->getId() == id)
+        if (current->dato->getCodigoUnico() == codigo)
             return current->dato;
         current = current->siguiente;
     }
     return nullptr;
 }
 
-void GestionAlumnos::eliminar(int id) {
+void GestionCursos::eliminar(string codigo) {
     Nodo* current = head;
     Nodo* anterior = nullptr;
 
-    while (current != nullptr && current->dato->getId() != id) {
+    while (current != nullptr && current->dato->getCodigoUnico() != codigo) {
         anterior = current;
         current = current->siguiente;
     }
@@ -48,7 +48,7 @@ void GestionAlumnos::eliminar(int id) {
     delete current->dato;
     delete current;
 }
-void GestionAlumnos::buscarPorNombre(string nombre) {
+void GestionCursos::buscarPorNombre(string nombre) {
     Nodo* current = head;
     bool encontrado = false;
     while (current != nullptr) {
@@ -60,6 +60,6 @@ void GestionAlumnos::buscarPorNombre(string nombre) {
         current = current->siguiente;
     }
     if (!encontrado) {
-        cout << "No se encontraron alumnos con el nombre: "+nombre << endl;
+        cout << "No se encontraron cursos con el nombre: "+nombre << endl;
     }
 }

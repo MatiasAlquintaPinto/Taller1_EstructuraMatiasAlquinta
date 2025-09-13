@@ -34,6 +34,8 @@ public:
     bool inscribirAlumno(Alumno* a);
     bool eliminarAlumno(int id);
     void mostrarInscritos();
+    bool alumnoInscrito(int idAlumno);
+    float promedioAlumno(int idAlumno);
 };
 
 #endif

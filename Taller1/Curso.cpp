@@ -67,3 +67,22 @@ void Curso::mostrarInscritos() {
         current = current->siguiente;
     }
 }
+bool Curso::alumnoInscrito(int idAlumno) {
+    NodoAlumno* current = headInscritos;
+    while (current != nullptr) {
+        if (current->alumno->getId() == idAlumno) return true;
+        current = current->siguiente;
+    }
+    return false;
+}
+
+float Curso::promedioAlumno(int idAlumno) {
+    NodoAlumno* current = headInscritos;
+    while (current != nullptr) {
+        if (current->alumno->getId() == idAlumno) {
+            return current->alumno->promedioCurso(codigoUnico);
+        }
+        current = current->siguiente;
+    }
+    return 0;
+}

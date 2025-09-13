@@ -63,3 +63,16 @@ void GestionAlumnos::buscarPorNombre(string nombre) {
         cout << "No se encontraron alumnos con el nombre: "+nombre << endl;
     }
 }
+void GestionAlumnos::mostrarPorCarrera(string carrera) {
+    Nodo* current = head;
+    bool encontrado = false;
+    while (current != nullptr) {
+        if (current->dato->getCarrera() == carrera) {
+            current->dato->mostrarInfo();
+            cout << "------------------" << endl;
+            encontrado = true;
+        }
+        current = current->siguiente;
+    }
+    if (!encontrado) cout << "No se encontraron alumnos en la carrera: " << carrera << endl;
+}

@@ -23,6 +23,8 @@ public:
     Curso* buscar(string codigo);
     void mostrarTodos();
     void buscarPorNombre(string nombre);
+    void mostrarCursosDeAlumno(Alumno* a);
+    void mostrarCursosYNotasDeAlumno(Alumno* a);
 };
 
 #endif

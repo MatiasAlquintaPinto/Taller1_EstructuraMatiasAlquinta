@@ -40,14 +40,13 @@ void GestionCursos::eliminar(string codigo) {
 
     if (current == nullptr) return;
 
-    if (anterior == nullptr)
-        head = current->siguiente;
-    else
-        anterior->siguiente = current->siguiente;
+    if (anterior == nullptr) head = current->siguiente;
+    else anterior->siguiente = current->siguiente;
 
     delete current->dato;
     delete current;
 }
+
 void GestionCursos::buscarPorNombre(string nombre) {
     Nodo* current = head;
     bool encontrado = false;
@@ -59,7 +58,32 @@ void GestionCursos::buscarPorNombre(string nombre) {
         }
         current = current->siguiente;
     }
-    if (!encontrado) {
-        cout << "No se encontraron cursos con el nombre: "+nombre << endl;
+    if (!encontrado) cout << "No se encontraron cursos con el nombre: " << nombre << endl;
+}
+
+void GestionCursos::mostrarCursosDeAlumno(Alumno* a) {
+    Nodo* current = head;
+    bool encontrado = false;
+    while (current != nullptr) {
+        if (current->dato->alumnoInscrito(a->getId())) {
+            cout << current->dato->getCodigoUnico() << " - " << current->dato->getNombre() << endl;
+            encontrado = true;
+        }
+        current = current->siguiente;
     }
+    if (!encontrado) cout << "El alumno no esta inscrito en ningun curso" << endl;
+}
+
+void GestionCursos::mostrarCursosYNotasDeAlumno(Alumno* a) {
+    Nodo* current = head;
+    bool encontrado = false;
+    while (current != nullptr) {
+        if (current->dato->alumnoInscrito(a->getId())) {
+            cout << current->dato->getCodigoUnico() << " - " << current->dato->getNombre()
+                 << " Promedio: " << current->dato->promedioAlumno(a->getId()) << endl;
+            encontrado = true;
+        }
+        current = current->siguiente;
+    }
+    if (!encontrado) cout << "El alumno no tiene cursos inscritos ni notas" << endl;
 }

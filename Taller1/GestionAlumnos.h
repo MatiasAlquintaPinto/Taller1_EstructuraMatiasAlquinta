@@ -23,6 +23,7 @@ public:
     Alumno* buscar(int id);
     void mostrarTodos();
     void buscarPorNombre(string nombre);
+    void mostrarPorCarrera(string carrera);
 };
 
 #endif
